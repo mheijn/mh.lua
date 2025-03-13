@@ -17,6 +17,7 @@ if not table.copy then
 function table.copy(orig)
     local copy = {}
     for key, value in pairs(orig) do
+        --print("tablecopy",type(value),key)
         if type(value)=="table" then
             copy[key]= table.copy(value)
         else
@@ -66,6 +67,11 @@ function table.merge(t1, t2)
 end
 end
 
+function inTable(tab,item)
+    for k,v in pairs(tab) do if item==v then return k end end
+    return false
+end
+    
 --table.deep_merge.info="table.deep_merge(t1, t2)\nDoes a deep merge from t2 (table) on t1 (table)."
 if arg ~= nil and arg[0] == string.sub(debug.getinfo(1,'S').source,2) then
     local a={een="een",twee="twee",drie={een="een",twee="twee"}}

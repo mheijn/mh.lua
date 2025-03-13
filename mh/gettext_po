@@ -1,0 +1,8 @@
+#!/bin/bash
+#echo "$@"
+ARG=$(printf '"%s"' "$1"; shift; if [ -n "$1" ]; then printf ',"%s"' "$@"; fi)
+#echo $ARG
+lua <<EOF
+gt = require("mh.gettext.gettext")
+gt.run($ARG)
+EOF

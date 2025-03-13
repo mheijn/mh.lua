@@ -16,7 +16,7 @@ function string:split(delimiter)
     end
     local result = {}
 
-    for match in (self .. delimiter):gmatch("([^..delimiter..*])" .. delimiter) do
+    for match in (self .. delimiter):gmatch("([^"..delimiter.."]*)" .. delimiter) do
         table.insert(result, match)
     end
     return result
@@ -25,7 +25,7 @@ end
 
 if arg ~= nil and arg[0] == string.sub(debug.getinfo(1,'S').source,2) then
     gen="2r.4r.5r.6r.8"
-    for i,v in ipairs( gen:split("r.") ) do
-        print(i,v)
-    end
+    for i,v in ipairs( gen:split("r.") ) do  print(i,v)  end
+    gen=" nl,en "
+    for i,v in ipairs( gen:split(",") ) do  print(i,v)  end
 end
